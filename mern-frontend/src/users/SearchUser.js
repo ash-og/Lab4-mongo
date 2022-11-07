@@ -25,7 +25,7 @@ const SearchUser = () => {
 
     const handleEdit = (event, user) => {
         event.preventDefault();
-        setEditUserId(user.id);
+        setEditUserId(user._id);
     }
 
     return(
@@ -51,10 +51,10 @@ const SearchUser = () => {
                             <tbody>
                             {searchResults.map((user) => (
                                 <Fragment>
-                                    { editUserId === user.id ? (
-                                        <EditUser user={user}/> 
+                                    { editUserId === user._id ? (
+                                        <EditUser key={user._id} user={user} /> 
                                     ) : (
-                                        <ListUser user={user} handleEdit={handleEdit}/>
+                                        <ListUser key={user._id} user={user} handleEdit={handleEdit}/>
                                     )}                                       
                                 </Fragment>
                             ))}
