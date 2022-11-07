@@ -38,5 +38,15 @@ router.post('/users', function(req, res, next) {
   });
 });
 
+router.post('/edit/:id', async(req, res) => {
+  const update = {name: req.body.name, age: req.body.age}
+  const filter = {id: req.params.id}
+
+  const updatedDocument = await User.findOneAndUpdate(filter, update, { new: true });
+
+    return res.status(200).send(updatedDocument);
+});
+
+
 
 module.exports = router;

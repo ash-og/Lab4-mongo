@@ -1,5 +1,7 @@
 import React from "react";
 
+// Returns editable inputs for the selected user 
+
 const EditUser = ({user}) => {
     return (
         <tr>

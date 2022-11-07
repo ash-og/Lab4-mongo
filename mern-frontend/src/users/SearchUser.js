@@ -5,7 +5,7 @@ import ListUser from './ListUser';
 const SearchUser = () => {
     const [searchResults, setSearchResults] = useState([]);
     const [errorMessage, setErrorMessage] = useState('');
-    const [editUserId, setEditUserId] = useState(1);
+    const [editUserId, setEditUserId] = useState(null);
 
     async function handleSearchUser(event) {
         event.preventDefault();
@@ -23,10 +23,42 @@ const SearchUser = () => {
         }
     }
 
-    const handleEdit = (event, user) => {
+    // Function to handle my edit event. Sets EditUserId to the user from the edit click
+
+    const handleEditClick = (event, user) => {
         event.preventDefault();
         setEditUserId(user._id);
     }
+
+    // // FIX THIS !!!!!!!!!
+
+    // const handleEditUser = async (event) => {
+    //     event.preventDefault();
+    //     setStatusMessage('');
+
+    //     let user = {
+    //         'name': name,
+    //         'age': age
+    //     };
+
+    //     try {
+    //         fetch("http://localhost:3100//edit/:id", {
+    //             method: "POST",
+    //             headers: {
+    //                 'Content-Type': "application/json"
+    //             },
+    //             body: JSON.stringify(user)
+    //         })
+    //             .then(response => response.json())
+    //             .then(data => {
+    //                 console.log(data);
+    //                 setStatusMessage('User ' + user.name + ' edited');
+    //             });
+    //     } catch (err) {
+    //         // Remediation logic
+    //         setStatusMessage('There was an error creating the user');
+    //     }
+    // }
 
     return(
         <div className="flex items-center justify-center ">
@@ -54,7 +86,7 @@ const SearchUser = () => {
                                     { editUserId === user._id ? (
                                         <EditUser key={user._id} user={user} /> 
                                     ) : (
-                                        <ListUser key={user._id} user={user} handleEdit={handleEdit}/>
+                                        <ListUser key={user._id} user={user} handleEditClick={handleEditClick}/>
                                     )}                                       
                                 </Fragment>
                             ))}
