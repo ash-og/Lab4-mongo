@@ -49,6 +49,7 @@ const AddUser = () => {
                 <label className="mt-6">Name</label>
                 <input
                     type="text"
+                    name="name"
                     className="mt-1 w-full rounded-md border-gray-300 shadow-sm"
                     placeholder=""
                     value={name}
@@ -57,6 +58,7 @@ const AddUser = () => {
                 <label className="mt-6">Age</label>
                 <input
                     type="text"
+                    name="age"
                     className="mt-1 w-full rounded-xl border-gray-300 shadow-sm"
                     placeholder=""
                     value={age}

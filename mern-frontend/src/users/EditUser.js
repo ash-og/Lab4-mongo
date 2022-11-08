@@ -2,7 +2,7 @@ import React from "react";
 
 // Returns editable inputs for the selected user 
 
-const EditUser = ({user}) => {
+const EditUser = ({ handleUpdateUser, newUserData }) => {
     return (
         <tr>
             <td>
@@ -10,7 +10,8 @@ const EditUser = ({user}) => {
                     type="text"
                     className="mt-1 w-full rounded-md border-gray-300 shadow-sm"
                     placeholder=""
-                    value={user.name}
+                    value={newUserData.name}
+                    onChange={handleUpdateUser}
                 />
             </td>
             <td>
@@ -18,11 +19,13 @@ const EditUser = ({user}) => {
                     type="text"
                     className="mt-1 w-full rounded-xl border-gray-300 shadow-sm"
                     placeholder=""
-                    value={user.age}
+                    value={newUserData.age}
+                    onChange={handleUpdateUser}
                 />
             </td>
+            <td><button type="submit">Save</button></td>
         </tr>
     );
 };
 
-export default EditUser
+export default EditUser;

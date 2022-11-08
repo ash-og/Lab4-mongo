@@ -7,6 +7,11 @@ const SearchUser = () => {
     const [errorMessage, setErrorMessage] = useState('');
     const [editUserId, setEditUserId] = useState(null);
 
+    const [updateUserData, setUpdateUserData] = useState({
+        name: "",
+        age: "",
+    })
+
     async function handleSearchUser(event) {
         event.preventDefault();
         setErrorMessage('');
@@ -28,7 +33,45 @@ const SearchUser = () => {
     const handleEditClick = (event, user) => {
         event.preventDefault();
         setEditUserId(user._id);
-    }
+
+        const formValues = {
+            name: user.name,
+            age: user.age,
+        }
+        setUpdateUserData(formValues);
+    };
+
+    const handleUpdateUser = (event) => {
+        event.preventDefault();
+
+        const fieldName = event.target.getAttribute('name');
+        const fieldValue = event.target.value;
+
+        const newUserData = { ...updateUserData };
+        newUserData[fieldName] = fieldValue;
+
+        setUpdateUserData(newUserData);
+    };
+
+
+    //     try {
+    //         fetch("http://localhost:3100//users/:id", {
+    //             method: "PUT",
+    //             headers: {
+    //                 'Content-Type': "application/json"
+    //             },
+    //             body: JSON.stringify(userUpdate)
+    //         })
+    //             .then(response => response.json())
+    //             .then(data => {
+    //                 console.log(data);
+    //                 setStatusMessage('User ' + user.name + ' updated');
+    //             });
+    //     } catch (err) {
+    //         // Remediation logic
+    //         setStatusMessage('There was an error creating the user');
+    //     }
+    //  };
 
     // // FIX THIS !!!!!!!!!
 
@@ -84,7 +127,10 @@ const SearchUser = () => {
                             {searchResults.map((user) => (
                                 <Fragment>
                                     { editUserId === user._id ? (
-                                        <EditUser key={user._id} user={user} /> 
+                                        <EditUser key={user._id} user={user} 
+                                            updateUserData={updateUserData}
+                                            handleUpdateUser={handleUpdateUser}
+                                        /> 
                                     ) : (
                                         <ListUser key={user._id} user={user} handleEditClick={handleEditClick}/>
                                     )}                                       
