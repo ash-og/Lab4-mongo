@@ -6,6 +6,7 @@ const SearchUser = () => {
     const [searchResults, setSearchResults] = useState([]);
     const [errorMessage, setErrorMessage] = useState('');
     const [editUserId, setEditUserId] = useState(null);
+    
 
     async function handleSearchUser(event) {
         event.preventDefault();
@@ -28,7 +29,14 @@ const SearchUser = () => {
     const handleEditClick = (event, user) => {
         event.preventDefault();
         setEditUserId(user._id);
-    }
+
+        const formValues = {
+            name: user.name,
+            age: user.age,
+        }
+
+        setUpdateUserData(formValues);
+    };
 
     // // FIX THIS !!!!!!!!!
 

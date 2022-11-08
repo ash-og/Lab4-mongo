@@ -38,7 +38,7 @@ router.post('/users', function(req, res, next) {
   });
 });
 
-router.post('/edit/:id', async(req, res) => {
+router.put('/users/:id', async(req, res) => {
   const update = {name: req.body.name, age: req.body.age}
   const filter = {id: req.params.id}
 
