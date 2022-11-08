@@ -29,13 +29,6 @@ const SearchUser = () => {
     const handleEditClick = (event, user) => {
         event.preventDefault();
         setEditUserId(user._id);
-
-        const formValues = {
-            name: user.name,
-            age: user.age,
-        }
-
-        setUpdateUserData(formValues);
     };
 
     // // FIX THIS !!!!!!!!!

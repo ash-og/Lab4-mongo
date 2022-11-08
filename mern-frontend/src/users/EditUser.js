@@ -25,13 +25,10 @@ const EditUser = ({user}) => {
         event.preventDefault();
         setStatusMessage('');
 
-        const fieldName = event.target.getAttribute("name");
-        const fieldValue = event.target.value;
-
-        const newUserData = { ...updateUserData };
-        newUserData[fieldName] = fieldValue;
-
-        setUpdateUserData(newUserData);
+        let updatedUser = {
+            'name': name,
+            'age': age
+        }
 
 
         try {
@@ -40,7 +37,7 @@ const EditUser = ({user}) => {
                 headers: {
                     'Content-Type': "application/json"
                 },
-                body: JSON.stringify(userUpdate)
+                body: JSON.stringify(updatedUser)
             })
                 .then(response => response.json())
                 .then(data => {
