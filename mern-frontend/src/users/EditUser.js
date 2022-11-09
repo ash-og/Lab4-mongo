@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 
 // Returns editable inputs for the selected user 
 
-const EditUser = ({editUserId, updateUserData, setUpdateUserData}) => {
+const EditUser = ({editUserId, setEditUserId, updateUserData, setUpdateUserData}) => {
     const [statusMessage, setStatusMessage] = useState('');
 
     const handleUpdateUserChange = async (event) => {
@@ -44,9 +44,13 @@ const EditUser = ({editUserId, updateUserData, setUpdateUserData}) => {
             // Remediation logic
             setStatusMessage('There was an error creating the user');
         }
+
+        setEditUserId(null);
     };
 
-
+    const handleCancelClick = () => {
+        setEditUserId(null);
+    };
 
     return (
         <tr>
@@ -63,7 +67,7 @@ const EditUser = ({editUserId, updateUserData, setUpdateUserData}) => {
             <td>
                 <input
                     type="text"
-                    age="age"
+                    name="age"
                     className="mt-1 w-full rounded-xl border-gray-300 shadow-sm"
                     placeholder=""
                     value={updateUserData.age}
@@ -71,9 +75,10 @@ const EditUser = ({editUserId, updateUserData, setUpdateUserData}) => {
                 />
             </td>
             <td>
-                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handleEditFormSubmit}>
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit" onClick={handleEditFormSubmit}>
                     Save
                 </button>
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type='button' onClick={handleCancelClick}>Cancel</button>
                 <p className="text-red-900">
                     { statusMessage }
                 </p>

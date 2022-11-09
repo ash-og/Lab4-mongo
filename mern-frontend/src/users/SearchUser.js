@@ -42,36 +42,6 @@ const SearchUser = () => {
         setUpdateUserData(formValues);
     };
 
-    // // FIX THIS !!!!!!!!!
-
-    // const handleEditUser = async (event) => {
-    //     event.preventDefault();
-    //     setStatusMessage('');
-
-    //     let user = {
-    //         'name': name,
-    //         'age': age
-    //     };
-
-    //     try {
-    //         fetch("http://localhost:3100//edit/:id", {
-    //             method: "POST",
-    //             headers: {
-    //                 'Content-Type': "application/json"
-    //             },
-    //             body: JSON.stringify(user)
-    //         })
-    //             .then(response => response.json())
-    //             .then(data => {
-    //                 console.log(data);
-    //                 setStatusMessage('User ' + user.name + ' edited');
-    //             });
-    //     } catch (err) {
-    //         // Remediation logic
-    //         setStatusMessage('There was an error creating the user');
-    //     }
-    // }
-
     return(
         <div className="flex items-center justify-center ">
             <div className="grid grid-flow-row auto-rows-max">
@@ -96,9 +66,17 @@ const SearchUser = () => {
                             {searchResults.map((user) => (
                                 <Fragment>
                                     { editUserId === user._id ? (
-                                        <EditUser key={user._id} editUserId={editUserId} updateUserData={updateUserData} setUpdateUserData={setUpdateUserData} /> 
+                                        <EditUser 
+                                        editUserId={editUserId} 
+                                        setEditUserId={setEditUserId} 
+                                        updateUserData={updateUserData} 
+                                        setUpdateUserData={setUpdateUserData}                                         
+                                        /> 
                                     ) : (
-                                        <ListUser key={user._id} user={user} handleEditClick={handleEditClick}/>
+                                        <ListUser 
+                                        user={user} 
+                                        handleEditClick={handleEditClick}
+                                        />
                                     )}                                       
                                 </Fragment>
                             ))}
