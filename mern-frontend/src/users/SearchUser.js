@@ -6,6 +6,10 @@ const SearchUser = () => {
     const [searchResults, setSearchResults] = useState([]);
     const [errorMessage, setErrorMessage] = useState('');
     const [editUserId, setEditUserId] = useState(null);
+    const [updateUserData, setUpdateUserData] = useState({
+        name: "",
+        age: "",
+    })
     
 
     async function handleSearchUser(event) {
@@ -29,6 +33,13 @@ const SearchUser = () => {
     const handleEditClick = (event, user) => {
         event.preventDefault();
         setEditUserId(user._id);
+
+        const formValues = {
+            name: user.name,
+            age: user.age
+        }
+
+        setUpdateUserData(formValues);
     };
 
     // // FIX THIS !!!!!!!!!
@@ -85,7 +96,7 @@ const SearchUser = () => {
                             {searchResults.map((user) => (
                                 <Fragment>
                                     { editUserId === user._id ? (
-                                        <EditUser key={user._id} user={user} /> 
+                                        <EditUser key={user._id} user={user} updateUserData={updateUserData} /> 
                                     ) : (
                                         <ListUser key={user._id} user={user} handleEditClick={handleEditClick}/>
                                     )}                                       

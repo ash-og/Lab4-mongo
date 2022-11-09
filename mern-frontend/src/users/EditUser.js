@@ -2,14 +2,10 @@ import React, {useState} from 'react';
 
 // Returns editable inputs for the selected user 
 
-const EditUser = ({user}) => {
+const EditUser = ({user, updateUserData}) => {
     const [name, setName] = useState('');
     const [age, setAge] = useState(0);
     const [statusMessage, setStatusMessage] = useState('');
-    const [updateUserData, setUpdateUserData] = useState({
-        name: "",
-        age: "",
-    })
 
     const handleNameFieldChange = (event) => {
         event.preventDefault();
@@ -25,15 +21,15 @@ const EditUser = ({user}) => {
         event.preventDefault();
         setStatusMessage('');
 
-        let updatedUser = {
+        const updatedUser = {
             'name': name,
             'age': age
-        }
+        };
 
 
         try {
-            fetch("http://localhost:3100//users/:id", {
-                method: "PUT",
+            fetch("http://localhost:3100//updateuser/:id", {
+                method: "POST",
                 headers: {
                     'Content-Type': "application/json"
                 },
@@ -57,7 +53,7 @@ const EditUser = ({user}) => {
                     type="text"
                     className="mt-1 w-full rounded-md border-gray-300 shadow-sm"
                     placeholder=""
-                    value={name}
+                    value={updateUserData.name}
                     onChange={(e) => handleNameFieldChange(e)}
                 />
             </td>
@@ -66,7 +62,7 @@ const EditUser = ({user}) => {
                     type="text"
                     className="mt-1 w-full rounded-xl border-gray-300 shadow-sm"
                     placeholder=""
-                    value={age}
+                    value={updateUserData.age}
                     onChange={(e) => handleAgeFieldChange(e)}
                 />
             </td>
