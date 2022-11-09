@@ -96,7 +96,7 @@ const SearchUser = () => {
                             {searchResults.map((user) => (
                                 <Fragment>
                                     { editUserId === user._id ? (
-                                        <EditUser key={user._id} user={user} updateUserData={updateUserData} /> 
+                                        <EditUser key={user._id} editUserId={editUserId} updateUserData={updateUserData} setUpdateUserData={setUpdateUserData} /> 
                                     ) : (
                                         <ListUser key={user._id} user={user} handleEditClick={handleEditClick}/>
                                     )}                                       
