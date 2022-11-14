@@ -5,7 +5,7 @@ import React, {useState} from 'react';
 const EditUser = ({editUserId, setEditUserId, updateUserData, setUpdateUserData}) => {
     const [statusMessage, setStatusMessage] = useState('');
 
-    const handleUpdateUserChange = async (event) => {
+    const handleUpdateUserChange = (event) => {
         event.preventDefault();
         setStatusMessage('');
 

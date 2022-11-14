@@ -16,7 +16,12 @@ router.get('/users', function(req, res, next) {
       res.send();
     }
 
-    console.log("returning all the users.");
+    if (!users) {
+      res.status(404);
+      res.send("Cannot find user");
+    }
+
+    console.log("returning the user.");
     res.send(users);
   })
 });
